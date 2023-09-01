@@ -1,0 +1,24 @@
+﻿@page "{id:int}"
+@model CadastroFilmes.UI.Pages.Filme.DetalheFilmeModel
+@{
+    ViewData["Title"] = "Detalhe do Filme"; 
+}
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h4><b>Título:</b> @Model.DetalheFilme.Title</h4>
+    <p><b>Ano de Lançamento:</b> @Model.DetalheFilme.ReleaseYear</p>
+    <p><b>Duração:</b> @Model.DetalheFilme.DurationsInMinute minutos</p>
+    <p><b>Categoria:</b> @Model.DetalheFilme.Category</p>
+    <p><b>Realizadores:</b>
+        <ul>@foreach (var nome in Model.NomesRealizadores)
+            {
+                <p>@nome</p>
+            }
+        </ul></p>
+
+</div>
+
+<div>
+    <a asp-page="Index" class="btn btn-info btn-sm">Voltar para a Lista</a>
+</div>

@@ -1,0 +1,21 @@
+﻿@page
+@model CadastroFilmes.UI.Pages.Realizador.NovoRealizadorModel
+@{
+    ViewData["Title"] = "Novo Realizador"; 
+}
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="Title">Nome:</label>
+        <input asp-for="Realizador.Name" class="form-control" />
+        <span asp-validation-for="Realizador.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="ReleaseYear">Idade:</label>
+        <input asp-for="Realizador.Age" class="form-control" />
+        <span asp-validation-for="Realizador.Age" class="text-danger"></span>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>

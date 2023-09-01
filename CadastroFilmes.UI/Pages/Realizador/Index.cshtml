@@ -1,0 +1,38 @@
+﻿@page
+@model CadastroFilmes.UI.Pages.Realizador.IndexModel
+@{
+    ViewData["Title"] = "Realizadores";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Bem Vindo a lista de Realizadores</p>
+<br />
+<a asp-page="NovoRealizador" class="btn btn-primary">Novo Realizdor</a>
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Acções</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var realizador in Model.Realizadores)
+        {
+            <tr>
+                <td>@realizador.Id</td>
+                <td>@realizador.Name</td>
+                <td>@realizador.Age</td>
+                <td>
+                    <a asp-page="DetalheRealizador" asp-route-id="@realizador.Id" class="btn btn-info btn-sm">Detalhes</a>
+                    <a asp-page="EditarRealizador" asp-route-id="@realizador.Id" class="btn btn-warning btn-sm">Editar</a>
+                    <a asp-page="ExcluirRealizador" asp-page-handler="ExcluirFilme" asp-route-id="@realizador.Id" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

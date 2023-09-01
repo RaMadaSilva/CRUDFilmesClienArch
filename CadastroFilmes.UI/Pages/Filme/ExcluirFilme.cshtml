@@ -1,0 +1,14 @@
+﻿@page "{id:int}"
+@model CadastroFilmes.UI.Pages.Filme.ExcluirFilmeModel
+@{
+    ViewData["Title"] = "Excluir Filmes"; 
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Você tem certeza de que deseja excluir o filme "@Model.FilmeExclusao.Title"?</p>
+
+<form method="post">
+    <input type="hidden" asp-for="FilmeExclusao.Id" />
+    <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -1,0 +1,12 @@
+﻿@page
+@model CadastroFilmes.UI.Pages.Realizador.DetalheRealizadorModel
+@{
+    ViewData["Title"] = "Detalhe do Realizador"; 
+}
+<h1>@ViewData["Title"]</h1>
+
+<p><b>Nome Realizador:</b> @Model.DetalheRealizador.Name</p>
+<p><b>Idade Realizador:</b> @Model.DetalheRealizador.Age Anos</p>
+<br/>
+
+<a asp-page="Index" class="btn btn-info">Voltar para a Lista</a>

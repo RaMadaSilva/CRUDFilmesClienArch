@@ -1,0 +1,14 @@
+﻿@page
+@model CadastroFilmes.UI.Pages.Realizador.ExcluirRealizadorModel
+@{
+    ViewData["Title"] = "Excluir Realizador"; 
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Você tem certeza de que deseja excluir o filme "@Model.ExcluirRealizador.Name"?</p>
+
+<form method="post">
+    <input type="hidden" asp-for="ExcluirRealizador.Id" />
+    <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -1,0 +1,25 @@
+﻿@page
+@model CadastroFilmes.UI.Pages.Realizador.EditarRealizadorModel
+@{
+    ViewData["Title"] = "Editar Realizador";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="EditarRealizador.Id" />
+
+    <div class="form-group">
+        <label for="Title">Nome do Realizador:</label>
+        <input asp-for="EditarRealizador.Name" class="form-control" />
+        <span asp-validation-for="EditarRealizador.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="ReleaseYear">Idade do Realizador:</label>
+        <input asp-for="EditarRealizador.Age" class="form-control" />
+        <span asp-validation-for="EditarRealizador.Age" class="text-danger"></span>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a asp-page="Index" class="btn btn-info">Voltar para a Lista</a>
+</form>
+

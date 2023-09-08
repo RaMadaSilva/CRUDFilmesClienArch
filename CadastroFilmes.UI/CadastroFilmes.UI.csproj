@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CadastroFilmes.Aplication\CadastroFilmes.Aplication.csproj" />
     <ProjectReference Include="..\CadastroFilmes.Infra\CadastroFilmes.Infra.csproj" />
   </ItemGroup>
 

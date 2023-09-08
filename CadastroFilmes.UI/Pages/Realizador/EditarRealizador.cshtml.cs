@@ -1,5 +1,6 @@
 using CadastroFilmes.Aplication.DTOs;
 using CadastroFilmes.Aplication.IServices;
+using CadastroFilmes.Domain.Commands;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

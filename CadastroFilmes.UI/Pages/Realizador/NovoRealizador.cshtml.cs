@@ -1,5 +1,6 @@
 using CadastroFilmes.Aplication.DTOs;
 using CadastroFilmes.Aplication.IServices;
+using CadastroFilmes.Domain.Commands;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -15,11 +16,11 @@ namespace CadastroFilmes.UI.Pages.Realizador
         }
 
         [BindProperty]
-        public RealizadorDTO Realizador { get; set; }
+        public InsertRealizadorCommand Realizador { get; set; }
 
         public void OnGet()
         {
-            Realizador = new RealizadorDTO(); 
+            Realizador = new InsertRealizadorCommand(); 
         }
         public async Task<IActionResult> OnPostAsync()
         {

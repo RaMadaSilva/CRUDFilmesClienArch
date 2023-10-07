@@ -18,7 +18,7 @@ namespace CadastroFilmes.Domain.Handlers
         {
 
             //Pegar todos os fimes do banco de dados
-            IEnumerable<Filme> filmes = await _uniteOfWork.FilmeRepository.GetFilmesAsync();
+            IEnumerable<Filme> filmes = await _uniteOfWork.FilmeRepository.GetAllAsync();
 
             //Executar a Query desejada
             return filmes.AsQueryable().Where(GetFilmeQuery.GetQueryAllFilme()); 
@@ -28,7 +28,7 @@ namespace CadastroFilmes.Domain.Handlers
         {
 
             //Pegar todos os fimes do banco de dados
-            var filme = await _uniteOfWork.FilmeRepository.GetFilmesAsync();
+            var filme = await _uniteOfWork.FilmeRepository.GetAllAsync();
 
             //Executar a Query desejada
             return filme

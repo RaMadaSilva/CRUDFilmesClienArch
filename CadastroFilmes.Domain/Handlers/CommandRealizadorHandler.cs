@@ -26,7 +26,7 @@ namespace CadastroFilmes.Domain.Handlers
 
             var realizador = new Realizador(command.Name, command.Age);
 
-            await _uniteOfWork.RealizadorRepository.AddRealizador(realizador);
+            await _uniteOfWork.RealizadorRepository.AddAsync(realizador);
             await _uniteOfWork.CommitAsync();
 
             return new CommandResult(realizador, true, "realizador criado com sucesso"); 
@@ -39,14 +39,14 @@ namespace CadastroFilmes.Domain.Handlers
             if (!command.IsValid)
                 return new CommandResult(command.Notifications, false, "Não foi possivel actualizar");
             
-            var realizador = await _uniteOfWork.RealizadorRepository.GetRealizadorByIdAsync(command.Id);
+            var realizador = await _uniteOfWork.RealizadorRepository.GetByIdAsync(command.Id);
 
             if (realizador is null)
                 return new CommandResult(null, false, "O realizador não existe na base de dados");
 
             realizador.UpdateRealizador(command.Name, command.Age); 
 
-             _uniteOfWork.RealizadorRepository.UpdateRealizador(realizador);
+             _uniteOfWork.RealizadorRepository.UpdateAsync(realizador);
             await _uniteOfWork.CommitAsync();
 
             return new CommandResult(realizador, true, "realizador Actualizado com sucesso"); 
@@ -54,12 +54,12 @@ namespace CadastroFilmes.Domain.Handlers
 
         public async Task<ICommandResult> Handle(DeleteRealizadorCommand command)
         {
-            var realizador = await _uniteOfWork.RealizadorRepository.GetRealizadorByIdAsync(command.Id);
+            var realizador = await _uniteOfWork.RealizadorRepository.GetByIdAsync(command.Id);
 
             if (realizador is null)
                 return new CommandResult(null, false, "Este realizador Não existe");
 
-            _uniteOfWork.RealizadorRepository.DeleteRealizador(realizador); 
+            _uniteOfWork.RealizadorRepository.DeleteAsync(realizador.Id); 
             await _uniteOfWork.CommitAsync();
 
             return new CommandResult(realizador, true, "realizador removido com sucesso"); 

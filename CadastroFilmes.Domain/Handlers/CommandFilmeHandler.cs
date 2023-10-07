@@ -33,7 +33,7 @@ namespace CadastroFilmes.Domain.Handlers
                         command.Category);
 
             //Salva o Fime no banco de dados
-            await _uniteOfWork.FilmeRepository.AddFilme(filme);
+            await _uniteOfWork.FilmeRepository.AddAsync(filme);
             await _uniteOfWork.CommitAsync(); 
 
             //Retorna o objecto salvo
@@ -49,7 +49,7 @@ namespace CadastroFilmes.Domain.Handlers
                 return new CommandResult(command.Notifications, false, "não foi possivel actualizar o filme");
 
             //pegar o Objecto que será actualizado; 
-            var filme = await _uniteOfWork.FilmeRepository.GetFilmeByIdAsync(command.Id);
+            var filme = await _uniteOfWork.FilmeRepository.GetByIdAsync(command.Id);
             
             //Actualiza o objecto pego do Banco de dados
             filme.UpdateFilme(command.Title, 
@@ -59,7 +59,7 @@ namespace CadastroFilmes.Domain.Handlers
 
             //Salvar as alterações o banco de dados
 
-             _uniteOfWork.FilmeRepository.UpdateFilme(filme);
+             _uniteOfWork.FilmeRepository.UpdateAsync(filme);
             await _uniteOfWork.CommitAsync();
 
             return new CommandResult(filme, true, "Filme actualizado com Sucesso"); 
@@ -68,7 +68,7 @@ namespace CadastroFilmes.Domain.Handlers
         public async Task<ICommandResult> Handle(DeleteFilmeCommand command)
         {
             //pegar o filme do banco de dados
-            var filme = await _uniteOfWork.FilmeRepository.GetFilmeByIdAsync(command.Id);
+            var filme = await _uniteOfWork.FilmeRepository.GetByIdAsync(command.Id);
 
             //validar se o filme Existe
 
@@ -76,7 +76,7 @@ namespace CadastroFilmes.Domain.Handlers
                 return new CommandResult(null, false, "O filme não existe no banco de dados");
 
             //Remover o filme do banco de dados 
-            _uniteOfWork.FilmeRepository.DeleteFilme(filme);
+            _uniteOfWork.FilmeRepository.DeleteAsync(command.Id);
 
             //Salvar a alteração
             await _uniteOfWork.CommitAsync();
@@ -89,8 +89,8 @@ namespace CadastroFilmes.Domain.Handlers
         public async Task<ICommandResult> Handle(AddRealizadorCommand command)
         {
             //pegar o Filme e o realizador 
-            var filme = await _uniteOfWork.FilmeRepository.GetFilmeByIdAsync(command.FilmeId);
-            var realizador = await _uniteOfWork.RealizadorRepository.GetRealizadorByIdAsync(command.RealizadorId);
+            var filme = await _uniteOfWork.FilmeRepository.GetByIdAsync(command.FilmeId);
+            var realizador = await _uniteOfWork.RealizadorRepository.GetByIdAsync(command.RealizadorId);
 
             //Validar o Filme 
             if (filme is null||realizador is null)
@@ -101,8 +101,8 @@ namespace CadastroFilmes.Domain.Handlers
             filme.AddRealizador(realizador);
 
             // Actualizar a base de dados
-            _uniteOfWork.FilmeRepository.UpdateFilme(filme);
-            _uniteOfWork.RealizadorRepository.UpdateRealizador(realizador);
+            _uniteOfWork.FilmeRepository.UpdateAsync(filme);
+            _uniteOfWork.RealizadorRepository.UpdateAsync(realizador);
             await _uniteOfWork.CommitAsync();
 
             //Retornar o  filme actualizado

@@ -14,7 +14,7 @@ namespace CadastroFilmes.Domain.Handlers
 
         public async Task<Realizador?> GetRealizadorQueryAsync(int id)
         {
-           var realizadores = await _uow.RealizadorRepository.GetRealizadoresAsync();
+           var realizadores = await _uow.RealizadorRepository.GetAllAsync();
            return realizadores
                         .AsQueryable()
                         .Where(GetRealizadorQuery.GetOnlyRealizador(id))
@@ -23,7 +23,7 @@ namespace CadastroFilmes.Domain.Handlers
 
         public async Task<IEnumerable<Realizador>> GetAllRealizadorAsync()
         {
-            var realizadores = await _uow.RealizadorRepository.GetRealizadoresAsync();
+            var realizadores = await _uow.RealizadorRepository.GetAllAsync();
 
             return realizadores.AsQueryable().Where(GetRealizadorQuery.GetAllRealizador()); 
         }

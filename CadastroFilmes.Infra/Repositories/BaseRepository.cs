@@ -24,7 +24,7 @@ namespace CadastroFilmes.Infra.Repositories
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
            await  Task.CompletedTask;
-           return  _set.AsNoTracking();
+           return  _set.AsNoTracking().ToList();
         }
 
         public async Task<TEntity> GetByIdAsync(int id) 

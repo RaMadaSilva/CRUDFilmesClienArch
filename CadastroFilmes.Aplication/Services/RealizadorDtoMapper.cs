@@ -28,10 +28,8 @@ namespace CadastroFilmes.Aplication.Services
 
             foreach (var realizador in realizadores)
             {
-                RealizadorDTO realizadorDto = ToRealizadorDto(realizador);
+                var realizadorDto = ToRealizadorDto(realizador);
                 realizadoresDto.Add(realizadorDto);
-
-                //yield return ToRealizadorDto(realizador);
             }
 
             return realizadoresDto;
